@@ -6,13 +6,13 @@ import { ResetButton } from './components/ResetButton';
 import { useGameState } from './state/useGameState';
 
 function App() {
-	const { turn, reset } = useGameState();
+	const { turn, reset, matrix } = useGameState();
 
 	return (
 		<div>
 			<HeaderWithCounter turn={turn} />
-			<Battlefield />
-			<ResetButton reset={reset}/>
+			<Battlefield matrix={matrix} />
+			<ResetButton reset={reset} />
 		</div>
 	);
 }
