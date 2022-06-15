@@ -10,6 +10,6 @@ export const useGameState = () => {
 	const turn = 0;
 	const reset = () => console.log('reset');
 	const matrix = createEmptyBattlefield();
-
+    
 	return { turn, reset, matrix };
 };
