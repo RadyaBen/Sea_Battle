@@ -7,11 +7,12 @@ import { useGameState } from './state/useGameState';
 
 function App() {
 	const { turn, reset, matrix } = useGameState();
-
+	const onFire = (y: number, x: number) => console.log(y, x);
+	
 	return (
 		<div>
 			<HeaderWithCounter turn={turn} />
-			<Battlefield matrix={matrix} />
+			<Battlefield matrix={matrix} onFire={onFire}/>
 			<ResetButton reset={reset} />
 		</div>
 	);
