@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import './Battlefield.scss';
+
 type CellProps = {
 	value: number,
 	cellClickHandler: (y: number, x: number) => void;
@@ -8,7 +10,11 @@ type CellProps = {
 }
 
 const Cell = ({ cellClickHandler, value, x, y }: CellProps) => {
-	return <button onClick={() => cellClickHandler(y, x)}>{value}</button>
+	return (
+		<button className='cell' onClick={() => cellClickHandler(y, x)}>
+			{value}
+		</button>
+	);
 };
 
 type BattlefieldProps = {
@@ -22,7 +28,7 @@ export const Battlefield = ({ matrix, onFire }: BattlefieldProps) => {
 	return (
 		<div>
 			{matrix.map((line, lineNumber) => (
-				<div key={lineNumber}>
+				<div className='line' key={lineNumber}>
 					{line.map((value, i) => (
 						<Cell
 							key={`${lineNumber}${i}`}

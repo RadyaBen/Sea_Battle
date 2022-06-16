@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { HeaderWithCounter } from './components/HeaderWithCounter';
-import { Battlefield } from './components/Battlefield';
+import { Battlefield } from './components/Battlefield/Battlefield';
 import { ResetButton } from './components/ResetButton';
 import { useGameState } from './state/useGameState';
 
