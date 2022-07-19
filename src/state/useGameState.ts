@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { createArray, createWarShip } from '../utils';
 
 const MAX_MATRIX_LENGTH = 10;
@@ -20,8 +22,19 @@ const createBattleField = () => {
 };
 
 export const useGameState = () => {
-	const turn = 0;
-	const reset = () => console.log('reset');
-	const matrix = createBattleField();
+	const [gameState, setGameState] = useState({
+		matrix: createBattleField(),
+		turn: 0
+	});
+
+	const reset = () => {
+		setGameState({
+			matrix: createBattleField(),
+			turn: 0,
+		});
+	};
+
+	const { turn, matrix } = gameState;
+
 	return { turn, reset, matrix };
 };
