@@ -9,7 +9,7 @@ function App() {
 	const { turn, reset, matrix, fire, won } = useGameState();
 
 	if (won) {
-		alert('You are win!');
+		alert('You won! Congratulations :)');
 		reset();
 	}
 

@@ -10,7 +10,7 @@ import {
 
 const MAX_MATRIX_LENGTH = 10;
 
-// Create an array of 10 elements in which the values ​​will be in the form of a matrix
+// Create an array of 10 elements in which the values will be in the form of a matrix
 const createEmptyBattlefield = () =>
 	createArray(MAX_MATRIX_LENGTH, () => createArray(MAX_MATRIX_LENGTH, () => 0)
 	);
