@@ -1,6 +1,12 @@
 import { useState } from 'react';
 
 import { createArray, createWarShip } from '../utils';
+import {
+	WATER,
+	SHIP,
+	CHECKED_WATER,
+	CHECKED_SHIP
+} from '../constants/cellState';
 
 const MAX_MATRIX_LENGTH = 10;
 
@@ -15,7 +21,7 @@ const createBattleField = () => {
 
 	// Add a ship to the matrix
 	newWarShip.forEach(({ x, y }) => {
-		emptyBattlefield[y][x] = 1;
+		emptyBattlefield[y][x] = SHIP;
 	});
 
 	return emptyBattlefield;
@@ -24,17 +30,42 @@ const createBattleField = () => {
 export const useGameState = () => {
 	const [gameState, setGameState] = useState({
 		matrix: createBattleField(),
-		turn: 0
+		turn: 0,
+		won: false
 	});
 
 	const reset = () => {
 		setGameState({
 			matrix: createBattleField(),
 			turn: 0,
+			won: false
 		});
 	};
 
-	const { turn, matrix } = gameState;
+	const fire = (y: number, x: number) => {
+		const cell = gameState.matrix[y][x];
 
-	return { turn, reset, matrix };
+		// Check if the same cell is clicked
+		if (cell === CHECKED_WATER || cell === CHECKED_SHIP) {
+			return;
+		}
+
+		const newState = cell === WATER ? CHECKED_WATER : CHECKED_SHIP;
+		gameState.matrix[y][x] = newState;
+		
+		// Check if there is a ship in the matrix
+		const won = gameState.matrix.every(line => line.every((x) => x !== SHIP));
+
+		setGameState({ ...gameState, turn: turn + 1, won });
+	};
+
+	const { turn, matrix, won } = gameState;
+
+	return { 
+		turn, 
+		reset, 
+		matrix,
+		fire, 
+		won 
+	};
 };
