@@ -7,7 +7,7 @@ type CellProps = {
 	cellClickHandler: (y: number, x: number) => void;
 	x: number;
 	y: number;
-}
+};
 
 const Cell = ({ cellClickHandler, value, x, y }: CellProps) => {
 	return (
@@ -23,7 +23,6 @@ type BattlefieldProps = {
 };
 
 export const Battlefield = ({ matrix, onFire }: BattlefieldProps) => {
-	console.log(matrix);
 
 	return (
 		<div>

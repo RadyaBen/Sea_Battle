@@ -6,13 +6,17 @@ import { ResetButton } from './components/ResetButton';
 import { useGameState } from './state/useGameState';
 
 function App() {
-	const { turn, reset, matrix } = useGameState();
-	const onFire = (y: number, x: number) => console.log(y, x);
-	
+	const { turn, reset, matrix, fire, won } = useGameState();
+
+	if (won) {
+		alert('You won! Congratulations :)');
+		reset();
+	}
+
 	return (
 		<div>
 			<HeaderWithCounter turn={turn} />
-			<Battlefield matrix={matrix} onFire={onFire}/>
+			<Battlefield matrix={matrix} onFire={fire} />
 			<ResetButton reset={reset} />
 		</div>
 	);
