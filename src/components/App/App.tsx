@@ -26,10 +26,14 @@ const App = () => {
 		}
 	}, [turn, reset, won]);
 
-	if (won) {
-		alert('You won! Congratulations 😎');
-		reset();
-	}
+	useEffect(() => {
+		if (won) {
+			alert('You won! Congratulations 😎');
+			setTimeout(() => {
+				reset();
+			}, 1500);
+		}
+	}, [won, reset]);
 
 	return (
 		<div className='container'>
